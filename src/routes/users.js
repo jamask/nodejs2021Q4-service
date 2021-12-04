@@ -25,7 +25,7 @@ const getUsersOpts = {
       }
     }
   },
-  handle: getUsers,
+  handler: getUsers,
 }
 
 const getUserOpts = {
@@ -34,13 +34,13 @@ const getUserOpts = {
       200: User,
     }
   },
-  handle: getUser,
+  handler: getUser,
 }
 
 const postUserOpts = {
   schema: {
     body: {
-      type: 'object',
+//      type: 'object',
       required: ['name', 'login', 'password'],
       properties: {
         name: { type: 'string', },
@@ -52,7 +52,7 @@ const postUserOpts = {
       201: User
     }
   },
-  handle: postUser
+  handler: postUser
 }
 
 const updateUserOpts = {
@@ -61,7 +61,7 @@ const updateUserOpts = {
       200: User,
     }
   },
-  handle: updateUser,
+  handler: updateUser,
 }
 
 const deleteUserOpts = {
@@ -75,7 +75,7 @@ const deleteUserOpts = {
       }
     }
   },
-  handle: deleteUser,
+  handler: deleteUser,
 }
 
 function usersRoute(fastify, options, done) {
@@ -92,7 +92,7 @@ function usersRoute(fastify, options, done) {
   fastify.put('/users/:userId', updateUserOpts)
 
   // Delete user
-  fastify.delete('/user/:userId', deleteUserOpts)
+  fastify.delete('/users/:userId', deleteUserOpts)
 
   done()
 }

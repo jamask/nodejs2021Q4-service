@@ -1,4 +1,5 @@
-const { uuidv4 } = require('uuid')
+const { v4: uuidv4 } = require('uuid')
+// const JSON5 = require('json5')
 const {
   selectUsers,
   selectUser,
@@ -8,16 +9,21 @@ const {
 } = require('../repositories/users')
 
 const getUsers = (req, reply) => {
-  reply.send(selectUsers())
+  reply
+  .header('Content-Type', 'application/json; charset=utf-8')
+  .send(selectUsers())
 }
 
 const getUser = (req, reply) => {
-  const { id } = req.params
+  const { userId } = req.params
 
-  reply.send(selectUser(id))
+  reply
+  .code(200)
+  .header('Content-Type', 'application/json; charset=utf-8')
+  .send(selectUser(String(userId)))
 }
 
-const addUser = (req, reply) => {
+const postUser = (req, reply) => {
   const { name, login, password } = req.body
   const newUser = {
     id: uuidv4(),
@@ -26,15 +32,18 @@ const addUser = (req, reply) => {
     password,
   }
 
-  reply.code(201).send(createUser(newUser))
+  reply
+    .code(201)
+    .header('Content-Type', 'application/json; charset=utf-8')
+    .send(createUser(newUser))
 }
 
 const updateUser = (req, reply) => {
-  const { id } = req.params
-  const { name, login, password } = req.body
+  const { userId } = req.params
+  const { name, login, password } = JSON.parse(req.body)
 
   const newUser = {
-    id,
+    userId,
     name,
     login,
     password,
@@ -44,9 +53,9 @@ const updateUser = (req, reply) => {
 }
 
 const deleteUser = (req, reply) => {
-  const { id } = req.params
+  const { userId } = req.params
 
-  reply.send(removeUser(id))
+  reply.send(removeUser(userId))
 }
 
 
@@ -54,7 +63,7 @@ const deleteUser = (req, reply) => {
 module.exports = {
   getUsers,
   getUser,
-  addUser,
+  postUser,
   updateUser,
   deleteUser,
 }
