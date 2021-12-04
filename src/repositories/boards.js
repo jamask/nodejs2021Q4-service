@@ -3,7 +3,7 @@ const db = require('./db')
 const selectBoards = () => db.boards
 
 const selectBoard = (id) => {
-  const returnBoard = db.boards.find((board) => board.id === id)
+  const returnBoard = db.boards.find((board) => board.id === String(id))
 
   return returnBoard
 }

@@ -17,7 +17,7 @@ const getBoards = (req, reply) => {
 const getBoard = (req, reply) => {
   const { boardId } = req.params
 
-  const returnBoard = selectBoard(String(boardId))
+  const returnBoard = selectBoard(boardId)
 
   if (returnBoard) {
     reply
@@ -28,13 +28,13 @@ const getBoard = (req, reply) => {
     reply
     .code(404)
     .header('Content-Type', 'application/json; charset=utf-8')
-    .send({ message: `Board ${boardId} not been found` })
+    .send({ message: `Board ${boardId} has not been found` })
   }
 }
 
 const postBoard = (req, reply) => {
   const { title, columns } = req.body
-  console.log(req.body, title, columns)
+
   const newBoard = {
     id: uuidv4(),
     title,
