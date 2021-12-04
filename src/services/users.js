@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid')
-// const JSON5 = require('json5')
+
 const {
   selectUsers,
   selectUser,
@@ -40,16 +40,18 @@ const postUser = (req, reply) => {
 
 const updateUser = (req, reply) => {
   const { userId } = req.params
-  const { name, login, password } = JSON.parse(req.body)
+  const { name, login, password } = req.body
 
   const newUser = {
-    userId,
+    id: userId,
     name,
     login,
     password,
   }
 
-  reply.send(changeUser(newUser))
+  reply
+    .code(200)
+    .send(changeUser(newUser))
 }
 
 const deleteUser = (req, reply) => {

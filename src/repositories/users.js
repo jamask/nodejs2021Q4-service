@@ -4,20 +4,26 @@ const selectUsers = () => db.users
 
 const selectUser = (id) => {
   const returnUser = db.users.find((user) => user.id === id)
+  delete returnUser.password
 
   return returnUser
 }
 
 const createUser = (user) => {
   db.users.push(user)
+  const returnUser = { ...user}
+  delete returnUser.password
 
-  return user
+  return returnUser
 }
 
 const changeUser = (newUser) => {
   db.users = db.users.map((user) => (user.id === newUser.id ? newUser : user))
+  const returnUser = { ...newUser}
+  delete returnUser.password
+  delete returnUser.id
 
-  return newUser
+  return returnUser
 }
 
 const removeUser = (id) => {

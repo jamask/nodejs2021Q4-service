@@ -1,7 +1,7 @@
 const fastify = require('fastify')({ logger: false })
 
 fastify.register(require('./routes/users'))
-// fastify.register(require('./routes/boards'))
+fastify.register(require('./routes/boards'))
 // fastify.register(require('./routes/tasks'))
 
 const start = async () => {
