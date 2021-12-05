@@ -5,15 +5,13 @@
 - Git - [Download & Install Git](https://git-scm.com/downloads).
 - Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package manager.
 
-## Downloading
+## Install
 
 ```
 git clone https://github.com/jamask/nodejs2021Q4-service
-```
 
-## Installing NPM modules
+git checkout solution
 
-```
 npm install
 ```
 
