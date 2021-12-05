@@ -3,10 +3,10 @@ const db = require('./db')
 const selectTasks = (boardId) => db.tasks.filter((task) => task.boardId === String(boardId))
 
 const selectTask = (boardId, taskId) => db.tasks.find((task) => 
-      (task.taskId === String(taskId) && (task.boardId === boardId)))
+      (task.id === String(taskId) && (task.boardId === boardId)))
 
 const createTask = (task) => {
-  db.task.push(task)
+  db.tasks.push(task)
 
   return task
 }

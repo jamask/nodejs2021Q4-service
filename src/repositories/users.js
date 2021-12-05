@@ -29,6 +29,12 @@ const changeUser = (newUser) => {
 const removeUser = (id) => {
   db.users = db.users.filter((user) => user.id !== id)
 
+  for (let i = 0; i < db.tasks.length; i += 1) {
+    if (db.tasks[i].userId === String(id)) {
+      db.tasks[i].userId = null
+    }
+  }
+
   return { message: `User ${id} has been removed` }
 }
 

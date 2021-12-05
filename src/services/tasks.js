@@ -18,7 +18,6 @@ const getTasks = (req, reply) => {
 
 const getTask = (req, reply) => {
   const { boardId, taskId } = req.params
-
   const returnTask = selectTask(boardId, taskId)
 
   if (returnTask) {
@@ -35,7 +34,8 @@ const getTask = (req, reply) => {
 }
 
 const postTask = (req, reply) => {
-  const { title, order, description, userId, boardId, columnId } = req.body
+  const { boardId } = req.params
+  const { title, order, description, userId, columnId } = req.body
 
   const newTask = {
     id: uuidv4(),

@@ -23,7 +23,8 @@ const changeBoard = (newBoard) => {
 }
 
 const removeBoard = (id) => {
-  db.boards = db.boards.filter((board) => board.id !== id)
+  db.boards = db.boards.filter((board) => board.id !== String(id))
+  db.tasks = db.tasks.filter((task) => task.boardId !== String(id))
 
   return { message: `Board ${id} has been removed` }
 }

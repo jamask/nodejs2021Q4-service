@@ -39,7 +39,7 @@ const getBoardOpts = {
 const postBoardOpts = {
   schema: {
     body: {
-//      type: 'object',
+      type: 'object',
       required: ['title', 'columns'],
       properties: {
         title: { type: 'string', },

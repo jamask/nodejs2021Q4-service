@@ -13,9 +13,9 @@ const Task = {
     title: { type: 'string'},
     order: { type: 'number'},
     description: { type: 'string'},
-    userId: { type: ['number', 'null'] },
-    boardId: { type: ['number', 'null'] },
-    columnId: { type: ['number', 'null'] },
+    userId: { type: ['string', 'null'] },
+    boardId: { type: ['string', 'null'] },
+    columnId: { type: ['string', 'null'] },
   }
 }
 
@@ -43,16 +43,16 @@ const getTaskOpts = {
 const postTaskOpts = {
   schema: {
     body: {
-//      type: 'object',
-      required: ['title', 'order', 'description', 'userId', 'boardId', 'columnId'],
+      type: 'object',
+      required: ['title', 'order', 'description', 'userId', 'boardId'],
       properties: {
         id: { type: 'string'},
         title: { type: 'string'},
         order: { type: 'number'},
         description: { type: 'string'},
-        userId: { type: ['number', 'null'] },
-        boardId: { type: ['number', 'null'] },
-        columnId: { type: ['number', 'null'] },
+        userId: { type: ['string', 'null'] },
+        boardId: { type: ['string', 'null'] },
+        columnId: { type: ['string', 'null'] },
       }
     },
     response: {
