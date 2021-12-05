@@ -11,7 +11,13 @@ const Board = {
   properties: {
     id: { type: 'string'},
     title: { type: 'string'},
-    columns: { type: 'array'},
+    columns: { 
+      type: 'array',
+      properties: {
+        title: { type: 'string'},
+        order: { type: 'number' }
+      }
+    },
   }
 }
 

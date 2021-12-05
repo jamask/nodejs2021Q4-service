@@ -17,10 +17,19 @@ const getUsers = (req, reply) => {
 const getUser = (req, reply) => {
   const { userId } = req.params
 
-  reply
-  .code(200)
-  .header('Content-Type', 'application/json; charset=utf-8')
-  .send(selectUser(String(userId)))
+  const returnUser = selectUser(userId)
+
+  if (returnUser) {
+    reply
+    .code(200)
+    .header('Content-Type', 'application/json; charset=utf-8')
+    .send(returnUser)
+  } else {
+    reply
+    .code(404)
+    .header('Content-Type', 'application/json; charset=utf-8')
+    .send({ message: `User ${userId} has not been found` })
+  }
 }
 
 const postUser = (req, reply) => {

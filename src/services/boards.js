@@ -35,6 +35,10 @@ const getBoard = (req, reply) => {
 const postBoard = (req, reply) => {
   const { title, columns } = req.body
 
+  for (let i = 1; i < columns.length; i += 1) {
+    columns[i].id = uuidv4()
+  }
+
   const newBoard = {
     id: uuidv4(),
     title,

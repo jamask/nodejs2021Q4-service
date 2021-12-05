@@ -3,7 +3,7 @@ const db = require('./db')
 const selectUsers = () => db.users
 
 const selectUser = (id) => {
-  const returnUser = db.users.find((user) => user.id === id)
+  const returnUser = db.users.find((user) => user.id === String(id))
   delete returnUser.password
 
   return returnUser
