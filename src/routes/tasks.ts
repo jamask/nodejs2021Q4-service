@@ -92,7 +92,7 @@ interface IFastify {
   delete (a: string, b: object): void
 }
 
-function tasksRoute(fastify: IFastify, _: object, done: Function) {
+function tasksRoute(fastify: IFastify, _: object, done: () => void) {
   // Get all tasks
   fastify.get('/boards/:boardId/tasks', getTasksOpts)
 

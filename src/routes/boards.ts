@@ -89,7 +89,7 @@ interface IFastify {
   delete (a: string, b: object): void
 }
 
-function boardsRoute(fastify: IFastify, _: object, done: Function) {
+function boardsRoute(fastify: IFastify, _: object, done: () => void) {
   // Get all boards
   fastify.get('/boards', getBoardsOpts)
 

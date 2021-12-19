@@ -85,7 +85,7 @@ interface IFastify {
   delete (a: string, b: object): void
 }
 
-function usersRoute(fastify: IFastify, _: object, done: Function) {
+function usersRoute(fastify: IFastify, _: object, done: () => void) {
   // Get all users
   fastify.get('/users', getUsersOpts)
 
