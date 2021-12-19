@@ -31,6 +31,11 @@ interface IReply {
   send(a: object): void
 }
 
+/**
+ * Replies to the client with a list of tasks
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const getTasks = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
 
@@ -39,6 +44,11 @@ const getTasks = (req: IReq, reply: IReply) => {
   .send(selectTasks(boardId))
 }
 
+/**
+ * Replies to the client with a selected task or error
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const getTask = (req: IReq, reply: IReply) => {
   const { boardId, taskId } = req.params
   const returnTask = selectTask(boardId, taskId)
@@ -56,6 +66,11 @@ const getTask = (req: IReq, reply: IReply) => {
   }
 }
 
+/**
+ * Replies to the client with an added task
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const postTask = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
   const { title, order, description, userId, columnId } = req.body
@@ -76,6 +91,11 @@ const postTask = (req: IReq, reply: IReply) => {
     .send(createTask(newTask))
 }
 
+/**
+ * Replies to the client with an updated task
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const updateTask = (req: IReq, reply: IReply) => {
   const { theBoardId, taskId } = req.params
   const { title, order, description, userId, boardId, columnId } = req.body
@@ -95,6 +115,11 @@ const updateTask = (req: IReq, reply: IReply) => {
     .send(changeTask(newTask, theBoardId))
 }
 
+/**
+ * Replies to the client with a deleted task
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const deleteTask = (req: IReq, reply: IReply) => {
   const { taskId } = req.params
 

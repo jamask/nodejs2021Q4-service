@@ -26,13 +26,22 @@ interface IReply {
   send(a: object): void
 }
 
-
+/**
+ * Replies to the client with a list of users
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const getUsers = (req: IReq, reply: IReply) => {
   reply
   .header('Content-Type', 'application/json; charset=utf-8')
   .send(selectUsers())
 }
 
+/**
+ * Replies to the client with a selected user or error
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const getUser = (req: IReq, reply: IReply) => {
   const { userId } = req.params
 
@@ -51,6 +60,11 @@ const getUser = (req: IReq, reply: IReply) => {
   }
 }
 
+/**
+ * Replies to the client with an added user
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const postUser = (req: IReq, reply: IReply) => {
   const { name, login, password } = req.body
   const newUser = {
@@ -66,6 +80,11 @@ const postUser = (req: IReq, reply: IReply) => {
     .send(createUser(newUser))
 }
 
+/**
+ * Replies to the client with an updated user
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const updateUser = (req: IReq, reply: IReply) => {
   const { userId } = req.params
   const { name, login, password } = req.body
@@ -82,6 +101,11 @@ const updateUser = (req: IReq, reply: IReply) => {
     .send(changeUser(newUser))
 }
 
+/**
+ * Replies to the client with a deleted user
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const deleteUser = (req: IReq, reply: IReply) => {
   const { userId } = req.params
 

@@ -25,12 +25,22 @@ interface IReply {
   send(a: object): void
 }
 
+/**
+ * Replies to the client with a list of boards
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const getBoards = (req: IReq, reply: IReply) => {
   reply
   .header('Content-Type', 'application/json; charset=utf-8')
   .send(selectBoards())
 }
 
+/**
+ * Replies to the client with a selected board or error
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const getBoard = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
 
@@ -49,6 +59,11 @@ const getBoard = (req: IReq, reply: IReply) => {
   }
 }
 
+/**
+ * Replies to the client with an added board
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const postBoard = (req: IReq, reply: IReply) => {
   const { title, columns } = req.body
 
@@ -68,6 +83,11 @@ const postBoard = (req: IReq, reply: IReply) => {
     .send(createBoard(newBoard))
 }
 
+/**
+ * Replies to the client with an updated board
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const updateBoard = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
   const { title, columns } = req.body
@@ -83,6 +103,11 @@ const updateBoard = (req: IReq, reply: IReply) => {
     .send(changeBoard(newBoard))
 }
 
+/**
+ * Replies to the client with a deleted board
+ * @param req first term IReq
+ * @param reply second term IReply
+ */
 const deleteBoard = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
 
