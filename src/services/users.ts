@@ -9,13 +9,31 @@ const {
   removeUser,
 } = require('../repositories/users.ts')
 
-const getUsers = (req, reply) => {
+interface IReq {
+  params: {
+    userId: string,
+  }
+  body: {
+    name: string,
+    login: string,
+    password: string,
+  }
+}
+
+interface IReply {
+  code(a: number): IReply
+  header(a: string, b: string): IReply
+  send(a: object): void
+}
+
+
+const getUsers = (req: IReq, reply: IReply) => {
   reply
   .header('Content-Type', 'application/json; charset=utf-8')
   .send(selectUsers())
 }
 
-const getUser = (req, reply) => {
+const getUser = (req: IReq, reply: IReply) => {
   const { userId } = req.params
 
   const returnUser = selectUser(userId)
@@ -33,7 +51,7 @@ const getUser = (req, reply) => {
   }
 }
 
-const postUser = (req, reply) => {
+const postUser = (req: IReq, reply: IReply) => {
   const { name, login, password } = req.body
   const newUser = {
     id: uuidv4(),
@@ -48,7 +66,7 @@ const postUser = (req, reply) => {
     .send(createUser(newUser))
 }
 
-const updateUser = (req, reply) => {
+const updateUser = (req: IReq, reply: IReply) => {
   const { userId } = req.params
   const { name, login, password } = req.body
 
@@ -64,7 +82,7 @@ const updateUser = (req, reply) => {
     .send(changeUser(newUser))
 }
 
-const deleteUser = (req, reply) => {
+const deleteUser = (req: IReq, reply: IReply) => {
   const { userId } = req.params
 
   reply.send(removeUser(userId))

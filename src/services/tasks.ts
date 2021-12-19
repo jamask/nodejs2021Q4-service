@@ -9,7 +9,29 @@ const {
   removeTask,
 } = require('../repositories/tasks.ts')
 
-const getTasks = (req, reply) => {
+interface IReq {
+  params: {
+    boardId?: string,
+    taskId?: string,
+    theBoardId?: string
+  }
+  body: {
+    title: string,
+    order: string,
+    description: string,
+    userId: string,
+    boardId?: string,
+    columnId: string
+  }
+}
+
+interface IReply {
+  code(a: number): IReply
+  header(a: string, b: string): IReply
+  send(a: object): void
+}
+
+const getTasks = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
 
   reply
@@ -17,7 +39,7 @@ const getTasks = (req, reply) => {
   .send(selectTasks(boardId))
 }
 
-const getTask = (req, reply) => {
+const getTask = (req: IReq, reply: IReply) => {
   const { boardId, taskId } = req.params
   const returnTask = selectTask(boardId, taskId)
 
@@ -34,7 +56,7 @@ const getTask = (req, reply) => {
   }
 }
 
-const postTask = (req, reply) => {
+const postTask = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
   const { title, order, description, userId, columnId } = req.body
 
@@ -54,7 +76,7 @@ const postTask = (req, reply) => {
     .send(createTask(newTask))
 }
 
-const updateTask = (req, reply) => {
+const updateTask = (req: IReq, reply: IReply) => {
   const { theBoardId, taskId } = req.params
   const { title, order, description, userId, boardId, columnId } = req.body
 
@@ -73,7 +95,7 @@ const updateTask = (req, reply) => {
     .send(changeTask(newTask, theBoardId))
 }
 
-const deleteTask = (req, reply) => {
+const deleteTask = (req: IReq, reply: IReply) => {
   const { taskId } = req.params
 
   reply.send(removeTask(taskId))

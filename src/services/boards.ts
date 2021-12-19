@@ -9,13 +9,29 @@ const {
   removeBoard,
 } = require('../repositories/boards.ts')
 
-const getBoards = (req, reply) => {
+interface IReq {
+  params: {
+    boardId: string,
+  }
+  body: {
+    title: string,
+    columns: Array<{id: string}>,
+  }
+}
+
+interface IReply {
+  code(a: number): IReply
+  header(a: string, b: string): IReply
+  send(a: object): void
+}
+
+const getBoards = (req: IReq, reply: IReply) => {
   reply
   .header('Content-Type', 'application/json; charset=utf-8')
   .send(selectBoards())
 }
 
-const getBoard = (req, reply) => {
+const getBoard = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
 
   const returnBoard = selectBoard(boardId)
@@ -33,7 +49,7 @@ const getBoard = (req, reply) => {
   }
 }
 
-const postBoard = (req, reply) => {
+const postBoard = (req: IReq, reply: IReply) => {
   const { title, columns } = req.body
 
   for (let i = 1; i < columns.length; i += 1) {
@@ -52,7 +68,7 @@ const postBoard = (req, reply) => {
     .send(createBoard(newBoard))
 }
 
-const updateBoard = (req, reply) => {
+const updateBoard = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
   const { title, columns } = req.body
 
@@ -67,7 +83,7 @@ const updateBoard = (req, reply) => {
     .send(changeBoard(newBoard))
 }
 
-const deleteBoard = (req, reply) => {
+const deleteBoard = (req: IReq, reply: IReply) => {
   const { boardId } = req.params
 
   reply.send(removeBoard(boardId))
