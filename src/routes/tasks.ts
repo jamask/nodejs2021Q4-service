@@ -92,6 +92,12 @@ interface IFastify {
   delete (a: string, b: object): void
 }
 
+/**
+ * Create `tasks` routes function
+ * @param fastify framework IFastify
+ * @param _ settings object
+ * @param done return function
+ */
 function tasksRoute(fastify: IFastify, _: object, done: () => void) {
   // Get all tasks
   fastify.get('/boards/:boardId/tasks', getTasksOpts)

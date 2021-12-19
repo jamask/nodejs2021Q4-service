@@ -89,6 +89,12 @@ interface IFastify {
   delete (a: string, b: object): void
 }
 
+/**
+ * Create `boards` routes function
+ * @param fastify framework IFastify
+ * @param _ settings object
+ * @param done return function
+ */
 function boardsRoute(fastify: IFastify, _: object, done: () => void) {
   // Get all boards
   fastify.get('/boards', getBoardsOpts)

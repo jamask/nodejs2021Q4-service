@@ -85,6 +85,12 @@ interface IFastify {
   delete (a: string, b: object): void
 }
 
+/**
+ * Create `users` routes function
+ * @param fastify framework IFastify
+ * @param _ settings object
+ * @param done return function
+ */
 function usersRoute(fastify: IFastify, _: object, done: () => void) {
   // Get all users
   fastify.get('/users', getUsersOpts)
