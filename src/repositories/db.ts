@@ -1,8 +1,8 @@
-const users = []
+const users: object[] = []
 
-const boards = []
+const boards: object[] = []
 
-const tasks = []
+const tasks: object[] = []
 
 module.exports = {
   users,

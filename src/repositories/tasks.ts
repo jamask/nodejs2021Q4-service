@@ -1,24 +1,25 @@
+export {}
 const db = require('./db.ts')
 
-const selectTasks = (boardId) => db.tasks.filter((task) => task.boardId === String(boardId))
+const selectTasks = (boardId: string) => db.tasks.filter((task: {boardId: string}) => task.boardId === String(boardId))
 
-const selectTask = (boardId, taskId) => db.tasks.find((task) => 
+const selectTask = (boardId: string, taskId: string) => db.tasks.find((task: {id: string, boardId: string}) => 
       (task.id === String(taskId) && (task.boardId === boardId)))
 
-const createTask = (task) => {
+const createTask = (task: object) => {
   db.tasks.push(task)
 
   return task
 }
 
-const changeTask = (newTask) => {
-  db.tasks = db.tasks.map((task) => (task.id === newTask.id ? newTask : task))
+const changeTask = (newTask: {id: string}) => {
+  db.tasks = db.tasks.map((task: {id: string}) => (task.id === newTask.id ? newTask : task))
 
   return newTask
 }
 
-const removeTask = (taskId) => {
-  db.tasks = db.tasks.filter((task) => task.id !== taskId)
+const removeTask = (taskId: string) => {
+  db.tasks = db.tasks.filter((task: {id: string}) => task.id !== taskId)
 
   return { message: `Task ${taskId} has been removed` }
 }
