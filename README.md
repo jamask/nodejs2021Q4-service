@@ -1,4 +1,4 @@
-# RS School REST service
+# RS School Typescript basics
 
 ## Prerequisites
 
@@ -10,7 +10,7 @@
 ```
 git clone https://github.com/jamask/nodejs2021Q4-service
 
-git checkout solution
+git checkout task-5
 
 npm install
 ```
