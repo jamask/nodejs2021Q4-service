@@ -20,6 +20,11 @@ npm install
 ```
 npm run start
 ```
+## Build application
+
+```
+npm run build
+```
 
 ## Testing
 
