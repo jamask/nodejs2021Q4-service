@@ -10,6 +10,6 @@
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-      "@typescript-eslint/no-explicit-any": "on"
+      "@typescript-eslint/no-explicit-any": "error"
   }
 }
