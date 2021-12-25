@@ -10,7 +10,7 @@
 ```
 git clone https://github.com/jamask/nodejs2021Q4-service
 
-git checkout task-5
+git checkout task-6
 
 npm install
 ```
