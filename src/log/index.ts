@@ -97,6 +97,4 @@ process.on('unhandledRejection', (reason: {message: string}, _) => {
   fs.appendFileSync('error.log', `\r\nUnhandled rejection detected: ${reason.message}`);
 });
 
-Promise.reject(Error('Oops!'));
-
 module.exports = logged
