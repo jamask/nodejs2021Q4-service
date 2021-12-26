@@ -1,6 +1,5 @@
 export {};
 const { v4: uuidv4 } = require('uuid')
-const logger = require('../log/index.ts')
 
 const {
   selectUsers,

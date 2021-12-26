@@ -97,4 +97,5 @@ process.on('unhandledRejection', (reason: {message: string}, _) => {
   fs.appendFileSync('error.log', `\r\nUnhandled rejection detected: ${reason.message}`);
 });
 
+
 module.exports = logged
