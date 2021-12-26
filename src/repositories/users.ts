@@ -14,9 +14,15 @@ const selectUsers = () => db.users
  * @returns the user object
  */
 const selectUser = (id: string) => {
-  const returnUser = db.users.find((user: {id: string}) => user.id === String(id))
-  delete returnUser.password
 
+  if (db.users.length === 0) {
+    return null
+  }
+
+  const returnUser = db.users.find((user: {id: string}) => user?.id === String(id))
+  if (returnUser) {
+    delete returnUser.password
+  }
   return returnUser
 }
 

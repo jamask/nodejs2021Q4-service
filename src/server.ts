@@ -1,8 +1,11 @@
 const fastify = require('fastify')({ logger: false })
+const logging = require('./log/index.ts')
 
 fastify.register(require('./routes/users.ts'))
 fastify.register(require('./routes/boards.ts'))
 fastify.register(require('./routes/tasks.ts'))
+
+logging(fastify)
 
 /**
  * Create RESTful API server

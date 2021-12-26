@@ -1,5 +1,6 @@
 export {};
 const { v4: uuidv4 } = require('uuid')
+const logger = require('../log/index.ts')
 
 const {
   selectUsers,
@@ -18,6 +19,7 @@ interface IReq {
     login: string,
     password: string,
   }
+  url: object
 }
 
 interface IReply {
@@ -32,6 +34,8 @@ interface IReply {
  * @param reply second term IReply
  */
 const getUsers = (req: IReq, reply: IReply) => {
+  //console.log(req.body, req.params, req.url)
+//  logger.info( [ req.body, req.params, req.url, reply.code ]);
   reply
   .header('Content-Type', 'application/json; charset=utf-8')
   .send(selectUsers())
