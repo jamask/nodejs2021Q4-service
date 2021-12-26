@@ -1,14 +1,23 @@
+const fs = require('fs');
 const {createLogger, format, transports} = require('winston');
 const dotenv = require('dotenv')
 dotenv.config()
 
 /*
   error: 0
-  warn: 1
-  info: 2 default
+  info: 1
+  silly: 2 default
 */
-const LOG_LEVEL = process.env.LOG_LEVEL
 
+let LOG_LEVEL: string;
+
+if (process.env.LOG_LEVEL === '0') {
+  LOG_LEVEL = 'error'
+} else if (process.env.LOG_LEVEL === '1') {
+  LOG_LEVEL = 'info'
+} else {
+  LOG_LEVEL = 'silly'
+}
 
 
 const logger = createLogger({
@@ -55,8 +64,13 @@ function logged(fastify: { addHook: Function }): void {
     send(a: string): void
   }
 
+  fastify.addHook('preHandler', (req: IReq, reply: IReply, done: () => void) => {
+    logger.silly(`statusCode: ${reply.statusCode}, url: ${req.url}, body: ${JSON.stringify(req.body)}, queryParameters: ${JSON.stringify(req.params)}`)
+    done()
+  })
+
   fastify.addHook('onResponse', (req: IReq, reply: IReply, done: () => void) => {
-    logger.info(`url: ${req.url}, body: ${JSON.stringify(req.body)}, queryParameters: ${JSON.stringify(req.params)}, statusCode: ${reply.statusCode}`)
+    logger.info(`statusCode: ${reply.statusCode}, url: ${req.url}, body: ${JSON.stringify(req.body)}, queryParameters: ${JSON.stringify(req.params)}`)
     done()
   })
 
@@ -67,8 +81,22 @@ function logged(fastify: { addHook: Function }): void {
     .code(500)
     .header('Content-Type', 'application/json; charset=utf-8')
     .send('Error')
-    
+
     done()
   })
 }
+
+process.on('uncaughtExceptionMonitor', (error, _) => {
+  console.error(`captured error: ${error.message}`);
+  fs.appendFileSync('error.log', `\r\ncaptured error: ${error.message}`);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason: {message: string}, _) => {
+  console.error(`Unhandled rejection detected: ${reason.message}`);
+  fs.appendFileSync('error.log', `\r\nUnhandled rejection detected: ${reason.message}`);
+});
+
+Promise.reject(Error('Oops!'));
+
 module.exports = logged
