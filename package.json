@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
-    "start": "ts-node src/server.ts",
+    "start": "npx ts-node src/server.ts",
     "lint": "eslint --ext .ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --verbose --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace"

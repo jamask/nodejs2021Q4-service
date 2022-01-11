@@ -1,6 +1,6 @@
 const fastify = require('fastify')({ logger: false })
 const logging = require('./log/index.ts')
-const Client = require('pg')
+const { Client } = require('pg')
 
 fastify.register(require('./routes/users.ts'))
 fastify.register(require('./routes/boards.ts'))
