@@ -1,7 +1,0 @@
-{"level":"info","message":"    statusCode: 404, url: /person, body: null, queryParameters: {\"*\":\"person\"}"}
-{"level":"info","message":"    statusCode: 404, url: /, body: null, queryParameters: {}"}
-{"level":"info","message":"    statusCode: 404, url: /, body: null, queryParameters: {}"}
-{"level":"info","message":"    statusCode: 404, url: /person, body: null, queryParameters: {\"*\":\"person\"}"}
-{"level":"info","message":"    statusCode: 404, url: /person, body: null, queryParameters: {\"*\":\"person\"}"}
-{"level":"info","message":"    statusCode: 404, url: /user, body: null, queryParameters: {\"*\":\"user\"}"}
-{"level":"info","message":"    statusCode: 200, url: /users, body: null, queryParameters: {}"}
