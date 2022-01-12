@@ -14,6 +14,18 @@ git checkout task-6
 
 npm install
 ```
+## Docker
+
+```
+docker-compose build
+
+docker-compose up
+
+```
+
+## Docker image
+
+jamaskhatgmailcom/node-task7
 
 ## Running application
 
