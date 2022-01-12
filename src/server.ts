@@ -25,7 +25,7 @@ fastify.get('/pg-test', async function (request, reply) {
  */
 const start = async () => {
   try {
-    await fastify.listen(4000)
+    await fastify.listen(4000, "0.0.0.0")
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
